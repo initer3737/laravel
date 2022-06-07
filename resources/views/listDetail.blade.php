@@ -1,14 +1,18 @@
 @extends('template.template')
 @section('title','list | edit')
 @section('main')
-    <form action="/list/{{$data->id}}/put" method="POST" class="container rounded d-flex flex-column gap-3 mt-3 p-4 rounded shadow">
+    <form action="/list/{{$data->id}}/put" method="POST" class="container rounded d-flex flex-column gap-3 mt-3 p-4 rounded shadow" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="d-flex justify-content-center align-items-center align-content-center px-5 py-2">
         <label for="file"><img src="{{asset('imgs/')}}/{{$data->file}}" alt="" srcset="" class="rounded-pill w-25 img-thumbnail" style="cursor:pointer"></label>
         <div class="d-flex flex-column gap-2">
             <p class="h3">status: <span id="status">empty!</span></p>
-            <input type="file" name="file" id="file" class="shadow">
+            <input type="file" name="file" id="file" class="shadow" onchange="Preview()">
+            @error('file')
+                .alert.alart
+            @enderror
+            <img alt="" srcset="" class="img-fluid w-50" id="img-preview">
         </div>
         </div>
         <div class="form-floating">
@@ -21,18 +25,21 @@
         </div>
         <button class="btn btn-outline-secondary py-2 px-5 rounded shadow text-capitalize" >send</button>
     </form>
+
+    <script>
+        function Preview(){
+    const image=document.querySelector('#file');
+    const preview=document.querySelector('#img-preview');
+
+    preview.style.display='block';
+
+    const reader=new FileReader();
+
+    reader.readAsDataURL(image.files[0]);
+    reader.onload =function(eventReader){
+        preview.src= eventReader.target.result;
+    }
+    
+}
+    </script>
 @endsection
-
-<script>
-    const inputfile=()=>{
-        let target=document.getElementById('status');
-        let file=document.getElementById('file');
-        target.innerHTML='file.value';
-    }
-    //status file setengah jadi
-    const initialize =()=>{
-        inputfile();
-    }
-
-    initialize();
-</script>

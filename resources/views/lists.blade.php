@@ -10,7 +10,8 @@
         @error('todo')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
-        <input type="file" class="form-control rounded shadow py-3" id="file" required name="file">
+        <input type="file" class="form-control rounded shadow py-3" id="file" required name="file" onchange="Preview()">
+        <img alt="" srcset="" class="img-fluid w-50" id="img-preview">
         @error('file')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
@@ -55,4 +56,21 @@
             @endforeach
         </table>
     </div>
+    {{-- <script src="{{asset('js/fitur.js')}}"></script> --}}
+    <script>
+        function Preview(){
+    const image=document.querySelector('#file');
+    const preview=document.querySelector('#img-preview');
+
+    preview.style.display='block';
+
+    const reader=new FileReader();
+
+    reader.readAsDataURL(image.files[0]);
+    reader.onload =function(eventReader){
+        preview.src= eventReader.target.result;
+    }
+    
+}
+    </script>
 @endsection

@@ -10,7 +10,7 @@ class todoController extends Controller
     public function Index()
     {
             $title ='lists';$data=todo::all();$no=1;
-            return view('lists',['datas'=>$data,'title'=>$title,'no'=>$no])->with('i', (request()->input('page', 1) - 1) * 5);
+            return view('lists',['datas'=>$data,'title'=>$title,'no'=>$no]);
     }
 
     public function IndexId($id)
@@ -32,7 +32,7 @@ class todoController extends Controller
             //filesend is a variable thats will be send to the database
             $file=$request->file('file');
             $filesend=$file->getClientOriginalName();
-            $file->move('imgs',$filesend);
+            $file->move('imgs/',$filesend);
             $filename=$request->input('filename');
             $POST=new todo;
         //     $POST->todo = $request->todo;
@@ -45,22 +45,34 @@ class todoController extends Controller
             return redirect('/');
     }
 
-    public function Update(Request $request)
+    public function Update(Request $request,$id)
     {
             $request->validate([
-                'todo'=>['required','max:125']
+                'todo'=>['required','max:125'],
+                'file'=>['required','image','max:12000'],
+                'filename'=>['required','min:12']
             ]);
-            
-            $POST=todo::find($request->id);
-        //     $POST->todo = $request->todo;
-            $POST->update( $request->all());
-        //     $POST->save();
+            $POST=todo::find($id);
+                       //1.upload the file from front end to storage
+            $fileupload=$request->file('file');
+            $filename=$fileupload->getClientOriginalName();
+            $dir="imgs/{$POST->file}";
+
+                    // 2.delete file from local and update the db
+                    File::delete($dir);
+            //3.move file
+            $fileupload->move('imgs/',$filename);
+        
+            $POST->todo = $request->todo;
+            $POST->file = $filename;
+            $POST->file_name = $request->filename;
+            $POST->save();
             return redirect('/');
     }
 
-    public function Delete(Request $request)
+    public function Delete(Request $request ,$id)
     {
-            $delete=todo::find($request->id);
+            $delete=todo::find($id);
             File::delete('imgs/'.$delete->file);//delete the image from directori
             $delete->delete();
             return redirect('/');
