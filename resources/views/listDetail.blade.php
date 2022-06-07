@@ -26,20 +26,21 @@
         <button class="btn btn-outline-secondary py-2 px-5 rounded shadow text-capitalize" >send</button>
     </form>
 
+
     <script>
-        function Preview(){
-    const image=document.querySelector('#file');
-    const preview=document.querySelector('#img-preview');
+//         function Preview(){
+//     const image=document.querySelector('#file');
+//     const preview=document.querySelector('#img-preview');
 
-    preview.style.display='block';
+//     preview.style.display='block';
 
-    const reader=new FileReader();
+//     const reader=new FileReader();
 
-    reader.readAsDataURL(image.files[0]);
-    reader.onload =function(eventReader){
-        preview.src= eventReader.target.result;
-    }
+//     reader.readAsDataURL(image.files[0]);
+//     reader.onload =function(eventReader){
+//         preview.src= eventReader.target.result;
+//     }
     
-}
+// }
     </script>
 @endsection
