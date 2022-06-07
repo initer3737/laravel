@@ -1,4 +1,4 @@
-function Preview(){
+const Preview=()=>{
     const image=document.querySelector('#file');
     const preview=document.querySelector('#img-preview');
 
@@ -7,7 +7,7 @@ function Preview(){
     const reader=new FileReader();
 
     reader.readAsDataURL(image.files[0]);
-    reader.onload =function(eventReader){
+    reader.onload =(eventReader)=>{
         preview.src= eventReader.target.result;
     }
     

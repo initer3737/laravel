@@ -6,11 +6,11 @@
         @method('PUT')
         <div class="d-flex justify-content-center align-items-center align-content-center px-5 py-2">
             <label for="file"><img src="{{asset('imgs/')}}/{{$data->file}}" alt="" srcset="" class="rounded-pill w-25 img-thumbnail gambar" style="cursor:pointer"></label>
-        <div class="d-flex flex-column gap-2">
-            <p class="h3">upload foto!!</p>
-            <input type="file" name="file" id="file" class="form-control shadow d-none rounded py-3" onchange="Preview()">
+        <div class="d-flex flex-column gap-1">
+            <label for="file"><p><i class="h2 bi bi-arrow-up-circle-fill upload-link"> upload</i></p></label>
+            <input type="file" name="file" id="file" class="form-control d-none shadow  rounded py-3" onchange="Preview()" value="{{$data->file}}">
             @error('file')
-                .alert.alart
+                <div class="alert alert-danger"><h5>{{$message}}</h5></div>
             @enderror
             <img alt="" srcset="" class="img-fluid w-75 shadow rounded p-1" id="img-preview">
         </div>

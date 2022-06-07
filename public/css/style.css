@@ -4,3 +4,13 @@
     transition: 0.25s ease;
 
 }
+.upload-link{
+    display: flex;
+    align-self: center;
+    margin-left: 50%;
+}
+.upload-link:hover{
+    color: dodgerblue;
+    transition: 0.5s ease;
+    cursor: pointer;
+}

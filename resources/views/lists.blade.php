@@ -10,7 +10,8 @@
         @error('todo')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
-        <input type="file" class="form-control shadow rounded py-3" id="file" required name="file" onchange="Preview()">
+        <label for="file"><p><i class="h2 bi bi-arrow-up-circle-fill upload-link"> upload</i></p></label>
+        <input type="file" class="form-control shadow rounded d-none py-3" id="file" required name="file" onchange="Preview()">
         <img alt="" srcset="" class="img-fluid w-50" id="img-preview">
         @error('file')
             <div class="alert alert-danger">{{$message}}</div>
@@ -44,7 +45,7 @@
                     <td class="p-3">{{$no++}}</td>
                     <td>{{$data->todo}}</td>
                     <td><img src="{{asset('imgs')}}/{{$data->file}}" alt="{{$data->file_name}}" class="img-fluid img-rounded rounded shadow w-50"></td>
-                    <td><p>name : {{$data->file_name}}</p></td>
+                    <td><p>{{$data->file_name}}</p></td>
                     <td>{{ Date('d-D-M-Y H:m:s', strtotime($data->created_at) ) }}</td>
                     <td>{{ Date('d-D-M-Y H:m:s', strtotime($data->updated_at) ) }}</td>
                     <td>
@@ -58,20 +59,11 @@
             @endforeach
         </table>
     </div>
-    <script>
-//         function Preview(){
-//     const image=document.querySelector('#file');
-//     const preview=document.querySelector('#img-preview');
-
-//     preview.style.display='block';
-
-//     const reader=new FileReader();
-
-//     reader.readAsDataURL(image.files[0]);
-//     reader.onload =function(eventReader){
-//         preview.src= eventReader.target.result;
-//     }
-    
-// }
-    </script>
+    {{-- axios library --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+     let url="/api/list";
+        axios.get(url)
+        .then((data)=>console.log(data.data)).catch((err)=>console.log(err));
+</script>
 @endsection

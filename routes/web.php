@@ -30,4 +30,5 @@ Route::post('/list/add',[todocontroller::class,'Store']);
 Route::get('/list/{id}/delete',[todocontroller::class,'Delete']);
 // Route::delete('/list/{id}/delete',[todocontroller::class,'Delete']);
 // update
-Route::put('list/{id}/put', [todocontroller::class,'Update']);
+Route::put('/list/{id}/put', [todocontroller::class,'Update']);
+

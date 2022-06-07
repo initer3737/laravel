@@ -7,6 +7,13 @@ use File;
 
 class todoController extends Controller
 {
+        // api
+public function ApiIndex()
+{       $data=todo::all();
+         return response()->json($data, 200, $headers);
+}
+
+
     public function Index()
     {
             $title ='lists';$data=todo::all();$no=1;
@@ -49,22 +56,26 @@ class todoController extends Controller
     {
             $request->validate([
                 'todo'=>['required','max:125'],
-                'file'=>['required','image','max:12000'],
+                'file'=>['image','max:12000'],
                 'filename'=>['required','min:12']
             ]);
             $POST=todo::find($id);
-                       //1.upload the file from front end to storage
-            $fileupload=$request->file('file');
-            $filename=$fileupload->getClientOriginalName();
-            $dir="imgs/{$POST->file}";
-
-                    // 2.delete file from local and update the db
-                    File::delete($dir);
-            //3.move file
-            $fileupload->move('imgs/',$filename);
+                       if($request->file('file')){
+                                //1.upload the file from front end to storage
+                                $fileupload=$request->file('file');
+                                $fileNameImage=$fileupload->getClientOriginalName();
+                                $dir="imgs/{$POST->file}";
+                                // 2.delete file from local and update the db
+                                        File::delete($dir);
+                                //3.move file
+                                $fileupload->move('imgs/',$fileNameImage);
+                       }
+                   if(is_null($request->file('file'))){
+                           $fileNameImage=$POST->file;
+                   }    
         
             $POST->todo = $request->todo;
-            $POST->file = $filename;
+            $POST->file = $fileNameImage;
             $POST->file_name = $request->filename;
             $POST->save();
             return redirect('/');
