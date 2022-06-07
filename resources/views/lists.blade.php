@@ -10,7 +10,7 @@
         @error('todo')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
-        <input type="file" class="form-control rounded shadow py-3" id="file" required name="file" onchange="Preview()">
+        <input type="file" class="form-control shadow d-none rounded py-3" id="file" required name="file" onchange="Preview()">
         <img alt="" srcset="" class="img-fluid w-50" id="img-preview">
         @error('file')
             <div class="alert alert-danger">{{$message}}</div>

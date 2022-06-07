@@ -7,12 +7,12 @@
         <div class="d-flex justify-content-center align-items-center align-content-center px-5 py-2">
         <label for="file"><img src="{{asset('imgs/')}}/{{$data->file}}" alt="" srcset="" class="rounded-pill w-25 img-thumbnail" style="cursor:pointer"></label>
         <div class="d-flex flex-column gap-2">
-            <p class="h3">status: <span id="status">empty!</span></p>
-            <input type="file" name="file" id="file" class="shadow" onchange="Preview()">
+            <p class="h3">upload foto!!</p>
+            <input type="file" name="file" id="file" class="form-control shadow d-none rounded py-3" onchange="Preview()">
             @error('file')
                 .alert.alart
             @enderror
-            <img alt="" srcset="" class="img-fluid w-50" id="img-preview">
+            <img alt="" srcset="" class="img-fluid w-75 shadow rounded p-1" id="img-preview">
         </div>
         </div>
         <div class="form-floating">
