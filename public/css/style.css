@@ -1,0 +1,6 @@
+.gambar:hover{
+    padding: 8px;
+    background-color: cadetblue;
+    transition: 0.25s ease;
+
+}

@@ -22,7 +22,7 @@
         @error('filename')
             <div class="alert alert-danger">{{$message}}</div>
         @enderror
-        <button class="btn btn-outline-secondary py-2 px-5 rounded shadow text-capitalize" name="send">send</button>
+        <button class="btn btn-outline-secondary py-2 px-5 rounded shadow text-capitalize" name="send"><i class="bi bi-bookmark-plus-fill"></i> send</button>
     </form>
 
     <div class="container m-3 p-3 shadow">
@@ -43,13 +43,15 @@
                 <tbody>
                     <td class="p-3">{{$no++}}</td>
                     <td>{{$data->todo}}</td>
-                    <td><img src="{{asset('imgs')}}/{{$data->file}}" alt="{{$data->file_name}}" class="img-fluid img-rounded rounded-pill shadow"></td>
+                    <td><img src="{{asset('imgs')}}/{{$data->file}}" alt="{{$data->file_name}}" class="img-fluid img-rounded rounded shadow w-50"></td>
                     <td><p>name : {{$data->file_name}}</p></td>
                     <td>{{ Date('d-D-M-Y H:m:s', strtotime($data->created_at) ) }}</td>
                     <td>{{ Date('d-D-M-Y H:m:s', strtotime($data->updated_at) ) }}</td>
                     <td>
-                        <a href="/list/{{$data->id}}/edit" class="shadow rounded-pill btn btn-warning px-5 py-2">edit</a>
-                            <a href="/list/{{$data->id}}/delete" class="shadow rounded-pill btn btn-danger px-5 py-2">delete</a>
+                        <div class="d-flex flex-wrap flex-column gap-3">
+                            <a href="/list/{{$data->id}}/edit" class="shadow rounded-pill btn btn-warning px-5 py-2"><i class="bi bi-pencil-square"></i> edit</a>
+                                <a href="/list/{{$data->id}}/delete" class="shadow rounded-pill btn btn-danger px-5 py-2"><i class="bi bi-x-octagon-fill"></i> delete</a>
+                        </div>
                     </td>
                 </tbody>
             </tr>
