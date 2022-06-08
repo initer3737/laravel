@@ -56,7 +56,7 @@ public function ApiIndex()
             $request->validate([
                 'todo'=>['required','max:125'],
                 'file'=>['required','image','max:12000'],
-                'filename'=>['required','min:12']
+                'filename'=>['required','min:2']
             ]);
             
             //post data image
