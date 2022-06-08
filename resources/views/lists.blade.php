@@ -12,22 +12,13 @@
                         <input type="text" class="form-control rounded shadow py-3" id="input" placeholder="my todos" required name="todo">
                         <label for="input">my todos</label>
                         </div>
-                        @error('todo')
-                            <div class="alert alert-danger">{{$message}}</div>
-                        @enderror
                         <label for="file"><p><i class="h2 bi bi-arrow-up-circle-fill upload-link"> upload</i></p></label>
                         <input type="file" class="form-control shadow rounded d-none py-3" id="file" required name="file" onchange="Preview()">
                         <img alt="" srcset="" class="img-fluid w-50" id="img-preview">
-                        @error('file')
-                            <div class="alert alert-danger">{{$message}}</div>
-                        @enderror
                         <div class="form-floating">
                         <input type="text" class="form-control rounded shadow py-3" id="filename" placeholder="filename" required name="filename">
                         <label for="filename">filename</label>
                         </div>
-                        @error('filename')
-                            <div class="alert alert-danger">{{$message}}</div>
-                        @enderror
                         <button class="btn btn-outline-secondary py-2 px-5 rounded shadow text-capitalize" name="send"><i class="bi bi-bookmark-plus-fill"></i> send</button>
                     </form>
                 </div>
@@ -36,6 +27,15 @@
         </div>
     </div>
         <div class="col-12 mt-5">
+            @error('todo')
+            <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('file')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
+            @error('filename')
+                <div class="alert alert-danger">{{$message}}</div>
+            @enderror
             <button class="btn btn-secondary py-3 px-5 rounded-pill shadow w-100" data-bs-toggle="modal" data-bs-target="#status"> buat status</button>
         </div>
 
