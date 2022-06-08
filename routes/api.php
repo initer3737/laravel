@@ -20,3 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // api
 Route::get('/list', [todocontroller::class,'ApiIndex']);
+
+// add data 
+Route::post('/list/add',[todocontroller::class,'Store']);

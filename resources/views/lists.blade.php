@@ -1,7 +1,7 @@
 @extends('template.template')
 @section('title','list')
 @section('main')
-    <form action="/list/add" method="post" class="container rounded d-flex flex-column gap-3 mt-3 p-4 rounded shadow" enctype="multipart/form-data">
+    <form action="/api/list/add" method="post" class="container rounded d-flex flex-column gap-3 mt-3 p-4 rounded shadow" enctype="multipart/form-data">
         @csrf
         <div class="form-floating">
         <input type="text" class="form-control rounded shadow py-3" id="input" placeholder="my todos" required name="todo">
@@ -62,8 +62,12 @@
     {{-- axios library --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js" integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-     let url="/api/list";
+     let url="http://127.0.0.1:8000/api/list";
         axios.get(url)
         .then((data)=>console.log(data.data)).catch((err)=>console.log(err));
+    const get=(url)=>{
+        axios.get(url)
+        .then((data)=>console.log(data.data)).catch((err)=>console.log(err));
+    }    
 </script>
 @endsection

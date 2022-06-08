@@ -10,6 +10,28 @@ class todoController extends Controller
         // api
 public function ApiIndex()
 {       $data=todo::all();
+        $headers=[
+                "status"=>200
+        ];
+        $fake=[
+                "name"=>"puthut wahyu aji",
+                "alamat"=>"k*dun*** pen**** rt.** rw.**",
+                "kesehatan"=>[
+                        1=>"gula darah",
+                        2=>"diabetes",
+                        3=>"darah tinggi"
+                ],
+                "hoby"=>[
+                          1=>"sepedaan",
+                          2=>"koding",
+                          3=>"berenang"
+                        ],
+                "hiburan"=>[
+                             1=>"youtube",
+                             2=>"instagram",
+                             3=>"film",
+                           ]               
+        ];
          return response()->json($data, 200, $headers);
 }
 
@@ -18,6 +40,9 @@ public function ApiIndex()
     {
             $title ='lists';$data=todo::all();$no=1;
             return view('lists',['datas'=>$data,'title'=>$title,'no'=>$no]);
+        // return response()->json($data, 200,[
+        //         "status"=>"200!"
+        // ]);
     }
 
     public function IndexId($id)
