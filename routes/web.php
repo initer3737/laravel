@@ -17,7 +17,9 @@ Route::get('/info', function () {
 });
 
 //auth route
-
+Route::get('/login', function ($id=null) {
+    return view('auth.login');
+});
 
 
 // crud operation
