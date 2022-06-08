@@ -16,8 +16,9 @@ Route::get('/info', function () {
     return view('welcome');
 });
 
-// // upload action
-// Route::get('/',[todocontroller::class,'Index']);
+//auth route
+
+
 
 // crud operation
 //    index get data from db

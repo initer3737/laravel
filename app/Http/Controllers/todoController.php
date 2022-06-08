@@ -64,13 +64,15 @@ public function ApiIndex()
             //filesend is a variable thats will be send to the database
             $file=$request->file('file');
             $filesend=$file->getClientOriginalName();
-            $file->move('imgs/',$filesend);
+            $ext=$file->getClientOriginalExtension();
+            $hashFile=$filesend=uniqid('username_').'.'.$ext;
+            $file->move('imgs/',$hashFile);
             $filename=$request->input('filename');
             $POST=new todo;
         //     $POST->todo = $request->todo;
             $POST->fill([
                 'todo' => $request->todo,
-                'file'=>$filesend,
+                'file'=>$hashFile,
                 'file_name'=>$filename
             ]);
             $POST->save();
