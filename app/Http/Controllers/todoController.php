@@ -55,10 +55,11 @@ public function ApiIndex()
     {
             $request->validate([
                 'todo'=>['required','max:125'],
-                'file'=>['required','image','max:12000'],
+                'file'=>['nullable','image','max:12000'],
                 'filename'=>['required','min:2']
             ]);
-            
+            $hashFile=null;
+        if( !is_null( $request->file('file') ) ){
             //post data image
             //ambil inputan file 2.ambil nama file 3.kirim ke folder tujuan  
             //filesend is a variable thats will be send to the database
@@ -67,6 +68,7 @@ public function ApiIndex()
             $ext=$file->getClientOriginalExtension();
             $hashFile=$filesend=uniqid('username_').'.'.$ext;
             $file->move('imgs/',$hashFile);
+        }
             $filename=$request->input('filename');
             $POST=new todo;
         //     $POST->todo = $request->todo;

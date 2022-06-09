@@ -21,7 +21,7 @@
                         <label for="input">my todos</label>
                         </div>
                         <label for="file"><p class="mx-auto"><i class="h2 bi bi-arrow-up-circle-fill upload-link"> upload</i></p></label>
-                        <input type="file" class="form-control shadow rounded d-none py-3" id="file" required name="file" onchange="Preview()">
+                        <input type="file" class="form-control shadow rounded d-none py-3" id="file" name="file" onchange="Preview()">
                         @error('file')
                         <div class="alert alert-danger">{{$message}}</div>
                         @enderror
@@ -55,21 +55,27 @@
 
     @foreach($datas as $data)  
         <div class="w-50 d-flex justify-content-center mx-auto mt-5 mb-5 flex-wrap flex-1">
-            <div class="card rounded shadow bg-light px-2 py-4">
+            <div class="border border-secondary card rounded shadow bg-light px-2 py-4">
                 <div class="card-content">
                     <div class="card-header">
                         <p>post number : {{$no++}}</p>
                         <p>file name:{{$data->file_name}}</p>
                         <p>todo: {{$data->todo}}</p>
                         <p>created at: {{ Date('d-D-M-Y H:m:s', strtotime($data->created_at) )}}</p>
-                        <p>updated at: {{ Date('d-D-M-Y H:m:s', strtotime($data->updated_at) ) }}</p>
+                        <p>updated at: {{ Date('d-D-M-Y H:i:s', strtotime($data->updated_at) ) }}</p>
                         <div class="d-flex flex-row flex-wrap gap-2">
                             <a href="/list/{{$data->id}}/edit" class="shadow rounded-pill btn btn-warning px-5 py-2"><i class="bi bi-pencil-square"></i> edit</a>
                                 <a href="/list/{{$data->id}}/delete" class="shadow rounded-pill btn btn-danger px-5 py-2"><i class="bi bi-x-octagon-fill"></i> delete</a>
                         </div>    
                     </div>
                     <div class="card-body">
-                        <img src="{{asset('imgs')}}/{{$data->file}}" alt="{{$data->file_name}}" class="img-fluid img-rounded rounded shadow">
+                       @if (
+                            $data->file_name == "" 
+                                    ||
+                            $data->file_name ==null
+                            )
+                       <img src="{{asset('imgs')}}/{{$data->file}}" alt="{{$data->file_name}}" class="img-fluid img-rounded rounded shadow">
+                       @endif 
                     </div>
                 </div>
             </div>

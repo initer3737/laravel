@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('mytodo', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('todo');
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->string('file_name');
             $table->timestamps();
         });
